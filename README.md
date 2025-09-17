@@ -1,4 +1,4 @@
-# DevLink CLI Homebrew Formula
+# Homebrew Tap for Devlink ClI
 
 ## Overview
 DevLink CLI is a command-line interface tool designed to streamline your development workflow. This project provides a Homebrew formula for easy installation on macOS.
@@ -8,11 +8,9 @@ DevLink CLI is a command-line interface tool designed to streamline your develop
 To install DevLink CLI using Homebrew, run the following command in your terminal:
 
 ```bash
-brew tap yourusername/homebrew-devlink
+brew tap devlink-sh/homebrew-devlink
 brew install devlink
 ```
-
-Replace `yourusername` with your GitHub username.
 
 ## Usage
 
