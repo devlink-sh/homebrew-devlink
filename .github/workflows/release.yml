@@ -1,0 +1,36 @@
+name: Release DevLink CLI
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '2.7' # Specify the Ruby version
+
+      - name: Install Homebrew
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bash_profile
+          eval "$(/opt/homebrew/bin/brew shellenv)"
+
+      - name: Build DevLink CLI
+        run: |
+          chmod +x ./scripts/build_release.sh
+          ./scripts/build_release.sh
+
+      - name: Publish Homebrew Formula
+        run: |
+          chmod +x ./scripts/publish_formula.sh
+          ./scripts/publish_formula.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
